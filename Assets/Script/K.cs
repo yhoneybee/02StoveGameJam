@@ -29,4 +29,6 @@ public static class K
     }
 
     private static PostProcessVolume postProcessVolume = null;
+
+    public static bool moveable = true;
 }
