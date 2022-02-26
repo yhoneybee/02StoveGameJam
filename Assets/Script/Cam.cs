@@ -42,6 +42,10 @@ public class Cam : MonoBehaviour
         if (hit.transform)
         {
             print(hit.transform.gameObject.name);
+
+            hit.transform.gameObject.SetActive(false);
+
+            PostProcessing.Instance.GradingEffect(100, true);
         }
     }
 

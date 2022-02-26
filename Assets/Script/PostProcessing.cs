@@ -106,4 +106,32 @@ public class PostProcessing : Singletone<PostProcessing>
 
         yield return null;
     }
+
+    public void GradingEffect(float value, bool restore)
+    {
+        if (K.PostProcessVolume.profile.TryGetSettings<ColorGrading>(out var effect))
+        {
+            StartCoroutine(EGradingEffect(effect, Mathf.Clamp(value, 0, 25), restore));
+        }
+    }
+
+    private IEnumerator EGradingEffect(ColorGrading grading, float value, bool restore)
+    {
+        while (Mathf.Abs(grading.postExposure - value) >= 1)
+        {
+            grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure, value, 2));
+            yield return wait;
+        }
+
+        if (restore)
+        {
+            while (Mathf.Abs(grading.postExposure - 0) >= 1)
+            {
+                grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure, 0, 3));
+                yield return wait;
+            }
+        }
+
+        yield return null;
+    }
 }

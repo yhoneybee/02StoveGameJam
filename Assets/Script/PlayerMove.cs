@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
     private void Start()
     {
+        K.playerMove = this;
         sr = GetComponent<SpriteRenderer>();
     }
 
