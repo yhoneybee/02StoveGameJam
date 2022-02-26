@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IDoorable
 {
     [SerializeField] private float moveSpeed = 5;
 

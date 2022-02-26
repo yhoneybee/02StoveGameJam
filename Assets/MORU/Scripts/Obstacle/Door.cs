@@ -12,7 +12,7 @@ public class Door : BasicObstacle
     [Tooltip("도착시의 문의 위치")]
     public Transform WarpTransfrom;
 
-    [Tooltip("이동 후의 맵 위치")]
+    [Tooltip("자신의 맵 위치")]
     public Define.Map targetMap;
 
     [Tooltip("문의 사용가능 상태")]
@@ -36,22 +36,36 @@ public class Door : BasicObstacle
         //문이 사용불가상태일 경우 동작하지 않습니다.
         if (!isActive) return;
 
-        //타겟을 지정한 위치로 이동시킵니다.
         if (reverseDoor != null)
-        { 
+        {
+
+            K.moveable = false;
+            //K.CinemachineConfiner.m_BoundingShape2D = null;
+
+            //타겟을 지정한 위치로 이동시킵니다.
             target.position = reverseDoor.WarpTransfrom.position;
+
+            //타겟 오브젝트의 현재 맵 위치를 결정해주기
+            MapManager.instance.maps[(int)reverseDoor.targetMap].Setting();
+
+            K.moveable = true;
+
+            //만일 문을 이용시의 시각적 효과를 작업할 경우 이 곳에 추가
+
+            //문을 이용한 횟수를 증가시킵니다.
+            GameManager.instance.Del_DoorCountUp();
         }
+
+
+
         else
         {
             Debug.Log("문이 할당되지 않았습니다.");
         }
 
-        //문을 이용한 횟수를 증가시킵니다.
-        GameManager.instance.Del_DoorCountUp();
 
 
-        //만일 문을 이용시의 시각적 효과를 작업할 경우 이 곳에 추가
-        //타겟 오브젝트의 현재 맵 위치를 결정해주기
+
 
     }
 

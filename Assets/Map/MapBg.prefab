@@ -134,7 +134,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  m_Color: {r: 0.22352938, g: 0.3805326, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,3 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   polygonCollider2D: {fileID: 7855656882497018647}
+  trigger: 1
