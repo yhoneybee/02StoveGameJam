@@ -174,7 +174,7 @@ MonoBehaviour:
   cur_Map: 1
   isActived: 1
   _isMoveable: 1
-  _moveSpeed: 3
+  _moveSpeed: 4
   _observingRange: 5
   _followingRange: 10
   _searchTime: 10
@@ -189,6 +189,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   DoorPos: {x: 0, y: 0, z: 0}
   selectedDoor: {fileID: 0}
+  prePos: {x: 0, y: 0, z: 0}
   skeletonAnim: {fileID: 1644225809}
   bug_Refresh: 10
   cur_Bug_Refresh: 0
@@ -299,7 +300,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.1721416}
+  m_Offset: {x: 0, y: -1.0157948}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -310,7 +311,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85, y: 5.7498026}
+  m_Size: {x: 0.85, y: 1.37393}
   m_EdgeRadius: 0
 --- !u!50 &3017711312876989877
 Rigidbody2D:

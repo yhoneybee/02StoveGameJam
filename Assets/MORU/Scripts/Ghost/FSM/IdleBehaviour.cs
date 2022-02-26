@@ -26,6 +26,7 @@ public class IdleBehaviour : StateMachineBehaviour
         if(ghost.targetPlayer != null)
         {
             animator.SetBool("isTarget", true);
+            animator.SetBool("isMove", true);
         }
         else
         {

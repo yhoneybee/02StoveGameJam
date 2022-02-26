@@ -65,6 +65,8 @@ public class BasicGhost : MonoBehaviour, IDoorable
     public Vector3 DoorPos;
     [SerializeField] Door selectedDoor;
 
+    public Vector3 prePos;
+
     public SkeletonAnimation skeletonAnim;
 
 
@@ -251,5 +253,17 @@ public class BasicGhost : MonoBehaviour, IDoorable
         SceneManager.LoadScene("GameOver");
 
         yield return null;
+    }
+
+    public void SetDirection(Vector3 pre, Vector3 current)
+    {
+        if(pre.x > current.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }
