@@ -39,4 +39,6 @@ public static class K
 
     public static Diagram diagram = null;
     public static HintUI hintUI = null;
+
+    public static PlayerMove playerMove = null;
 }
