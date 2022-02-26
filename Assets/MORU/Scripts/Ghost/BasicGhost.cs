@@ -43,7 +43,14 @@ public class BasicGhost : MonoBehaviour, IDoorable
     [SerializeField] private float _moveRange;
     public float moveRange => _moveRange;
 
+    [Tooltip("타겟이 없을 때의 랜덤이동 시간")]
+    [SerializeField] private float _moveTime;
+    public float moveTime => _moveTime;
+    public float cur_moveTime;
+
     [SerializeField] private float _Observingterm = 0.2f;
+
+    public bool isDooring;
 
     #endregion Value Variables
 
@@ -52,8 +59,27 @@ public class BasicGhost : MonoBehaviour, IDoorable
     public Transform targetPlayer;
     [Tooltip("다가가려 하는 위치")]
     public Vector3 targetPos;
-
+    public Vector3 DoorPos;
+    [SerializeField] Door selectedDoor; 
     #endregion Ref Variables
+
+    void Start()
+    {
+        isDooring = false;
+    }
+
+    void Update()
+    {
+        if (!isDooring)
+        { cur_searchTime += Time.deltaTime; }
+        if(cur_searchTime > searchTime && targetPlayer == null && selectedDoor == null)
+        {
+            var doors = myMap.GetComponentsInChildren<Door>();
+            var door = doors[Random.Range(0, doors.Length)];
+            selectedDoor = door;
+            TargetToDoor(door);
+        }
+    }
 
     /// <summary>
     /// 탐지거리를 시각적으로 보여줍니다.
@@ -62,7 +88,8 @@ public class BasicGhost : MonoBehaviour, IDoorable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, observingRange);
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, followingRange);
     }
 
 
@@ -117,21 +144,64 @@ public class BasicGhost : MonoBehaviour, IDoorable
     /// AI가 움직일 때의 랜덤좌표를 받아옵니다.
     /// </summary>
     /// <returns></returns>
-    public Vector3 GetRandomPos_InMap()
+    /// 
+    public bool  GetRandomPos_InMap(out Vector3 targetPos)
     {
-        Vector3 _point = Vector3.zero;
-        do
+        if(isDooring)
         {
-            var point = transform.position +
-                new Vector3(Random.Range(-moveRange, moveRange), Random.Range(-moveRange, moveRange), 0);
-            _point = point;
+            targetPos = DoorPos;
+            return true;
         }
-        while (!myMap.polygonCollider2D.OverlapPoint(_point));
+        Vector3 _point = Vector3.zero;
+            var point = transform.position +
+                new Vector3(Random.Range(-moveRange*2, moveRange*2), Random.Range(-moveRange, moveRange), 0);
+            _point = point;
+        targetPos = _point;
+        Debug.Log($"{_point}");
+        if (myMap.polygonCollider2D.OverlapPoint(_point))
+        {
+            
+            return true;
+        }
+        else
+            return false;
 
-        return _point;
+
     }
 
-    
+    /// <summary>
+    /// targetPos를 문으로 바꿉니다.
+    /// </summary>
+    public void TargetToDoor(Door door)
+    {
+        if(targetPlayer == null)
+        {
+            targetPos = door.transform.position;
+            DoorPos = door.transform.position;
+            isDooring = true;
+            Debug.Log("움직임 체크");
+            return;
+        }
+        else
+        {
+            targetPlayer = null;
+            targetPos = door.transform.position;
+            DoorPos = door.transform.position;
+            isDooring = true;
+            Debug.Log("움직임 체크");
+        }
+    }
+
+    /// <summary>
+    /// 문에 입장하면 실행됩니다.
+    /// </summary>
+    public void OnDoor()
+    {
+        selectedDoor = null;
+        targetPos = transform.position;
+        isDooring = false;
+        cur_searchTime = 0;
+    }
 
 
 }

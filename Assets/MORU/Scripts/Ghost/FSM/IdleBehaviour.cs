@@ -30,15 +30,18 @@ public class IdleBehaviour : StateMachineBehaviour
         {
             ghost.FindObject(); //플레이어 오브젝트를 주변에서 탐색합니다.
 
-            if(ghost.cur_searchTime < ghost.searchTime)
+            if(ghost.cur_moveTime < ghost.moveTime && !ghost.isDooring)
             {
-                ghost.cur_searchTime += Time.deltaTime;
+                ghost.cur_moveTime += Time.deltaTime;
             }
             else
             {
-                ghost.cur_searchTime = 0;
-                ghost.targetPos = ghost.GetRandomPos_InMap();
-                animator.SetBool("isMove", true);
+                if(ghost.GetRandomPos_InMap(out Vector3 targetPos))
+                {
+                    ghost.targetPos = targetPos;
+                    ghost.cur_moveTime = 0;
+                    animator.SetBool("isMove", true);
+                }
             }
         }
     }
