@@ -59,8 +59,14 @@ public class DeskGhost : Ghost
         if (dis < 4.8f)
         {
             animator.Play("Smile");
+            Invoke(nameof(UnableCam), 0.5f);
             CancelInvoke();
         }
+    }
+
+    private void UnableCam()
+    {
+        K.camable = false;
     }
 
     public void EndOfFrame()
@@ -75,7 +81,17 @@ public class DeskGhost : Ghost
         yield return new WaitForSeconds(1);
 
         GameObject.Find("DeskGhostFace").GetComponent<SpriteRenderer>().color = Color.white;
-        
+
+        SoundManager.Instance.Play("돌 움직", SoundType.EFFECT);
+
+        yield return new WaitForSeconds(1);
+
+        SoundManager.Instance.Play("비명소리", SoundType.EFFECT);
+
+        yield return new WaitForSeconds(1.3f);
+
+        SoundManager.Instance.Play("책상 웃음", SoundType.EFFECT);
+
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene("GameOver");

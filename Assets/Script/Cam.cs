@@ -25,6 +25,8 @@ public class Cam : MonoBehaviour
         {
             cam.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            SoundManager.Instance.Play("카메라 초점음 1", SoundType.EFFECT);
+
             if (Vector2.Distance(transform.position, cam.transform.position) > range)
             {
                 K.moveable = true;
@@ -43,11 +45,15 @@ public class Cam : MonoBehaviour
         var hit = Physics2D.Raycast(cam.transform.position, Vector3.forward, 2, LayerMask.GetMask("Filmable"));
         if (hit.transform)
         {
+            SoundManager.Instance.Play("카메라 써터음 1회-3", SoundType.EFFECT);
+
             print(hit.transform.gameObject.name);
 
             hit.transform.gameObject.SetActive(false);
 
             PostProcessing.Instance.GradingEffect(100, true);
+
+            PostProcessing.Instance.GradingEffect2(Color.white);
 
             imgPicture.sprite = hit.transform.GetComponent<Ghost>().spPicture;
 

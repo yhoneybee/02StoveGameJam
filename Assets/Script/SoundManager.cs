@@ -75,7 +75,9 @@ public class SoundManager : Singletone<SoundManager>
     }
     private void Start()
     {
-        TotalVolume = 0.5f;
+        TotalVolume = 1;
+
+        Play("bgm", SoundType.BGM);
     }
 
     public void Play(AudioClip audioClip, SoundType soundType = SoundType.EFFECT)
