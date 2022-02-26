@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public List<HintInfo> hints;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         var basicObstacle = collision.GetComponent<BasicObstacle>();
@@ -18,11 +20,14 @@ public class PlayerInteraction : MonoBehaviour
             if (hintableObject)
             {
 
-                if (hintableObject.hintInfo != null)
+                if (!hintableObject.taken)
                 {
-                    K.diagram.Chatting(Color.black, "......", "...?!", hintableObject.hintInfo.getHintCommnet);
-                    K.hintUI.GetHint(hintableObject.hintInfo);
-                    hintableObject.hintInfo = null;
+                    int rand = Random.Range(0,hints.Count);
+                    var hintInfo = hints[rand];
+                    hints.RemoveAt(rand);
+                    K.diagram.Chatting(Color.black, "......", "...?!", hintInfo.getHintCommnet);
+                    K.hintUI.GetHint(hintInfo);
+                    hintableObject.taken = true;
                 }
                 else
                 {
