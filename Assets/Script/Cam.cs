@@ -49,13 +49,18 @@ public class Cam : MonoBehaviour
 
             print(hit.transform.gameObject.name);
 
-            hit.transform.gameObject.SetActive(false);
+            var ghost = hit.transform.GetComponent<Ghost>();
+
+            if (ghost)
+            {
+                hit.transform.gameObject.SetActive(false);
+                imgPicture.sprite = ghost.spPicture;
+            }
 
             PostProcessing.Instance.GradingEffect2(Color.white);
 
             PostProcessing.Instance.GradingEffect(100, true);
 
-            imgPicture.sprite = hit.transform.GetComponent<Ghost>().spPicture;
 
             for (int i = 0; i < 5; i++)
             {
@@ -65,6 +70,12 @@ public class Cam : MonoBehaviour
                 {
                     img.sprite = imgPicture.sprite;
                     img.gameObject.SetActive(true);
+
+                    if (i == 4)
+                    {
+                        print("WIN");
+                    }
+
                     break;
                 }
             }
