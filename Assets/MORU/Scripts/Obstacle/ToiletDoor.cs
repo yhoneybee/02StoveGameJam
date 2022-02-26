@@ -9,6 +9,7 @@ public class ToiletDoor : BasicObstacle, IHideable
     [SerializeField] Transform _HiddenPosition;
 
     public Transform HiddenObject { get; private set; }
+    Transform IHideable.transform { get => transform; }
 
     #endregion Ref Variables
 
