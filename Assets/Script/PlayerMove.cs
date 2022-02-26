@@ -16,10 +16,14 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(new Vector2(h, v) * moveSpeed * Time.fixedDeltaTime);
 
+        var position = Vector3.zero;
+        if (K.curMap)
+            position = K.curMap.transform.position;
+
         var halfMapScale = K.curMap.transform.localScale / 2 - transform.localScale / 2;
 
-        var clampX = Mathf.Clamp(transform.position.x, -halfMapScale.x, halfMapScale.x);
-        var clampY = Mathf.Clamp(transform.position.y, -halfMapScale.y, halfMapScale.y);
+        var clampX = Mathf.Clamp(transform.position.x, position.x - halfMapScale.x, position.x + halfMapScale.x);
+        var clampY = Mathf.Clamp(transform.position.y, position.y - halfMapScale.y, position.y + halfMapScale.y);
 
         var viewport = Camera.main.WorldToViewportPoint(transform.localPosition);
 
