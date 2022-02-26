@@ -32,13 +32,27 @@ public class Cam : MonoBehaviour
     public void TakePicture()
     {
         // Zoom카메라 위치에서 Raycasting해서 뭘 찍었는지 확인
+        var hit = Physics2D.Raycast(cam.transform.position, Vector3.forward, 2, LayerMask.GetMask("Filmable"));
+        if (hit.transform)
+        {
+            print(hit.transform.gameObject.name);
+        }
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(1))
         {
             CameraToggle();
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakePicture();
         }
     }
 
@@ -46,10 +60,11 @@ public class Cam : MonoBehaviour
     {
         if (!K.moveable)
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
 
-            cam.transform.Translate(new Vector2(h, v) * moveSpeed * Time.fixedDeltaTime);
+            //cam.transform.Translate(new Vector2(h, v) * moveSpeed * Time.fixedDeltaTime);
+            cam.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             var clampX = Mathf.Clamp(cam.transform.position.x, transform.position.x - range, transform.position.x + range);
             var clampY = Mathf.Clamp(cam.transform.position.y, transform.position.y - range, transform.position.y + range);
