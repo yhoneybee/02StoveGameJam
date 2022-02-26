@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToiletGhost_Call : MonoBehaviour
 {
     public Transform to_Ghost;
+    public ToiletGhost to_Ghost2;
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -30,7 +31,10 @@ public class ToiletGhost_Call : MonoBehaviour
                 }
             }
             if (to_Ghost != null)
-            { to_Ghost.transform.position = this.transform.position; }
+            { 
+                if(to_Ghost.GetChild(0).GetComponent<ToiletGhost>().isCallable)
+                    to_Ghost.transform.position = this.transform.position; 
+            }
         }
 
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 322902219}
   - component: {fileID: 322902223}
   - component: {fileID: 322902222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: New SkeletonAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03985977, y: 2.5275092}
+  m_Offset: {x: 0.03985977, y: 0.6791389}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.3}
@@ -259,7 +259,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4553604, y: 1.6726809}
+  m_Size: {x: 0.4553604, y: 5.3694215}
   m_EdgeRadius: 0
 --- !u!50 &7972746021587995076
 Rigidbody2D:
@@ -341,3 +341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10614201b2c8b734ebc6d744a03a33e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hints:
+  - {fileID: 11400000, guid: 44b2ac2f104143e46ab623ca799dc748, type: 2}
+  - {fileID: 11400000, guid: 9f427620bc9e1f947b47f1ffb7d1e1f6, type: 2}
+  - {fileID: 11400000, guid: e2911ae485bacc840a09e99561932b4e, type: 2}
+  - {fileID: 11400000, guid: d18e67ac8f87ea841a097824848004da, type: 2}

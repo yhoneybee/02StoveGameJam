@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ToiletGhost : Ghost
 {
+    public bool isCallable = true;
+
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Animator animator;
 
@@ -13,6 +15,12 @@ public class ToiletGhost : Ghost
     {
         sr.transform.gameObject.layer = 0;
         animator.Play("Non");
+        isCallable = true;
+    }
+
+    public void PlayVoice()
+    {
+        SoundManager.Instance.Play("≥Î≈©");
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +29,7 @@ public class ToiletGhost : Ghost
         {
             animator.Play("Open");
             sr.transform.gameObject.layer = 7;
+            isCallable = false;
         }
     }
 

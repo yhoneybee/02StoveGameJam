@@ -26,6 +26,7 @@ public class Chest : BasicObstacle, IHideable
 
 
         HiddenObject = target;
+        SoundManager.Instance.Play("락커 열기");
 
         //플레이어의 숨어짐 처리는 플레이어에서 할 필요가 있습니다.
         //라이트 제어라면 이 곳에서 처리해도 좋습니다.

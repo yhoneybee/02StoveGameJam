@@ -12,7 +12,7 @@ public class TitleController : MonoBehaviour
     bool isActive;
     private void Update()
     {
-        if(Input.anyKeyDown && !GuideImage.gameObject.activeInHierarchy)
+        if(Input.anyKeyDown && !GuideImage.gameObject.activeInHierarchy && !Synop_Image.gameObject.activeInHierarchy)
         {
             GuideImage.gameObject.SetActive(true);
             StartCoroutine(FadeIn(GuideImage));
@@ -49,7 +49,7 @@ public class TitleController : MonoBehaviour
     {
         Color _color = new Color(0, 0, 0, Alpha_speed);
         yield return null;
-        while(image.color.a >= 0.99f)
+        while(image.color.a >= 0.01f)
         {
             image.color -= _color;
             yield return null;
