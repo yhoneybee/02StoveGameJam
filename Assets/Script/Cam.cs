@@ -51,9 +51,9 @@ public class Cam : MonoBehaviour
 
             hit.transform.gameObject.SetActive(false);
 
-            PostProcessing.Instance.GradingEffect(100, true);
-
             PostProcessing.Instance.GradingEffect2(Color.white);
+
+            PostProcessing.Instance.GradingEffect(100, true);
 
             imgPicture.sprite = hit.transform.GetComponent<Ghost>().spPicture;
 
