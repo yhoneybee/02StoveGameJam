@@ -209,7 +209,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isMove
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: isTarget
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -240,13 +240,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isTarget
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -272,6 +272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d41d16d162ef469226ddab06ce55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animType: 0
+  ClipName: 
+  ghost: {fileID: 0}
 --- !u!114 &3374448326035057081
 MonoBehaviour:
   m_ObjectHideFlags: 1

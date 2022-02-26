@@ -32,7 +32,8 @@ public class MoveBehaviour : StateMachineBehaviour
                 }
                 else
                 {
-                    animator.transform.Translate(ghost.targetPos * ghost.moveSpeed * Time.fixedDeltaTime);
+                    var nextPos = (ghost.targetPos - animator.transform.position).normalized;
+                    animator.transform.Translate(nextPos * ghost.moveSpeed * Time.fixedDeltaTime);
                 }
             }
         }

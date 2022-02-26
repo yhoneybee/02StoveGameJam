@@ -24,12 +24,20 @@ public class ChaseBehaviour : StateMachineBehaviour
         if (ghost.IsClosedToUnit())     //충분히 가까울 경우
         {
             //대상을 쫒아갑니다.
-
+            var nextPos = (ghost.targetPlayer.position - animator.transform.position).normalized;
+            animator.transform.Translate(nextPos * ghost.moveSpeed * Time.fixedDeltaTime);
+        }
+        else if(ghost.isDooring)
+        {
+            //대상을 쫒아갑니다.
+            var nextPos = (ghost.targetPos - animator.transform.position).normalized;
+            animator.transform.Translate(nextPos * ghost.moveSpeed * Time.fixedDeltaTime);
         }
         else
         {
             //추적 애니메이션 키값을 해제합니다.
             animator.SetBool("isTarget", false);
+
         }
     }
 

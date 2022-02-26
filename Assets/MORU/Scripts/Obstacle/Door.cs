@@ -38,24 +38,44 @@ public class Door : BasicObstacle
 
         if (reverseDoor != null)
         {
+            //플레이어가 문에 진입한 경우
+            if (target.CompareTag("Player"))
+            {
+                var obj = FindObjectOfType<BasicGhost>();
+                if (obj != null) { 
+                    obj.TargetToDoor(this); 
+                }
+                K.moveable = false;
+                //K.CinemachineConfiner.m_BoundingShape2D = null;
 
-            K.moveable = false;
-            //K.CinemachineConfiner.m_BoundingShape2D = null;
+                //타겟을 지정한 위치로 이동시킵니다.
+                target.position = reverseDoor.WarpTransfrom.position;
 
-            //타겟을 지정한 위치로 이동시킵니다.
-            target.position = reverseDoor.WarpTransfrom.position;
+                //타겟 오브젝트의 현재 맵 위치를 결정해주기
+                MapManager.instance.maps[(int)reverseDoor.targetMap].Setting();
 
-            //타겟 오브젝트의 현재 맵 위치를 결정해주기
-            MapManager.instance.maps[(int)reverseDoor.targetMap].Setting();
+                K.moveable = true;
 
-            K.moveable = true;
-
-            //만일 문을 이용시의 시각적 효과를 작업할 경우 이 곳에 추가
+                //만일 문을 이용시의 시각적 효과를 작업할 경우 이 곳에 추가
 
 
 
-            //문을 이용한 횟수를 증가시킵니다.
-            GameManager.instance.Del_DoorCountUp();
+                //문을 이용한 횟수를 증가시킵니다.
+                GameManager.instance.Del_DoorCountUp();
+            }
+            //유령이 문에 진입한 경우
+            else
+            {
+                //이동시킨다.
+                target.position = reverseDoor.WarpTransfrom.position;
+                //해당 유령의 맵을 최신화한다.
+                if(target.TryGetComponent<BasicGhost>(out BasicGhost ghost))
+                {
+                    ghost.cur_Map = reverseDoor.targetMap;
+                    ghost.OnDoor();
+                }
+                Debug.Log("이동됨");
+            }
         }
 
 
@@ -78,7 +98,7 @@ public class Door : BasicObstacle
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.TryGetComponent<IDoorable>(out IDoorable doorable))
+        if (collision.transform.TryGetComponent<IDoorable>(out IDoorable doorable))
         {
             OnDoor(collision.transform);
         }
