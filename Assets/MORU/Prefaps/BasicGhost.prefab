@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1644225810}
   - component: {fileID: 1644225809}
   - component: {fileID: 1644225808}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New SkeletonAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 3017711312876989872}
   - component: {fileID: 3017711312876989876}
   - component: {fileID: 3017711312876989877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BasicGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,6 +184,7 @@ MonoBehaviour:
   cur_moveTime: 0
   _Observingterm: 0.2
   isDooring: 0
+  isActive: 0
   targetPlayer: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   DoorPos: {x: 0, y: 0, z: 0}

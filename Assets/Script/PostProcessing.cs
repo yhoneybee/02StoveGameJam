@@ -22,7 +22,7 @@ public class PostProcessing : Singletone<PostProcessing>
     {
         if (K.PostProcessVolume.profile.TryGetSettings<Bloom>(out var effect))
         {
-            StartCoroutine(EBloomEffect(effect, Mathf.Clamp(value, 0, 60)));
+            StartCoroutine(EBloomEffect(effect, Mathf.Clamp(value, 0, 70)));
         }
     }
 

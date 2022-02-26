@@ -62,27 +62,55 @@ public class Cam : MonoBehaviour
 
             PostProcessing.Instance.GradingEffect(100, true);
 
+            var img = rtrnLayoutGroup.GetChild(GameManager.instance.takenGhosts.Count).GetComponent<Image>();
 
-            for (int i = 0; i < 5; i++)
+            if (!GameManager.instance.takenGhosts.Contains(hit.transform.name))
             {
-                var img = rtrnLayoutGroup.GetChild(i).GetComponent<Image>();
-
-                if (img.sprite == null)
-                {
-                    img.sprite = imgPicture.sprite;
-                    img.gameObject.SetActive(true);
-
-                    if (i == 4)
-                    {
-                        SceneManager.LoadScene(3);
-                    }
-
-                    break;
-                }
+                img.sprite = imgPicture.sprite;
+                img.gameObject.SetActive(true);
             }
+
+            GameManager.instance.takenGhosts.Add(hit.transform.name);
+
+            if (GameManager.instance.takenGhosts.Count == 5)
+            {
+                StartCoroutine(EExit());
+            }
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    var img = rtrnLayoutGroup.GetChild(i).GetComponent<Image>();
+
+            //    if (img.sprite == null)
+            //    {
+            //        img.sprite = imgPicture.sprite;
+            //        img.gameObject.SetActive(true);
+
+            //        if (i == 4)
+            //        {
+            //            StartCoroutine(EExit());
+            //        }
+
+            //        break;
+            //    }
+            //}
 
             StartCoroutine(EShowPicture());
         }
+    }
+
+    private IEnumerator EExit()
+    {
+        FindObjectOfType<BasicGhost>().gameObject.SetActive(false);
+
+        PostProcessing.Instance.BloomEffect(1000);
+        PostProcessing.Instance.GradingEffect(100, false);
+
+        yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene(3);
+
+        yield return null;
     }
 
     private IEnumerator EShowPicture()
