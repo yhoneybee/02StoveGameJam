@@ -21,7 +21,26 @@ public class IdleBehaviour : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //분기는 타겟이 존재하냐 유무에 변합니다.
+        if(ghost.targetPlayer != null)
+        {
+            animator.SetBool("isTarget", true);
+        }
+        else
+        {
+            ghost.FindObject(); //플레이어 오브젝트를 주변에서 탐색합니다.
 
+            if(ghost.cur_searchTime < ghost.searchTime)
+            {
+                ghost.cur_searchTime += Time.deltaTime;
+            }
+            else
+            {
+                ghost.cur_searchTime = 0;
+                ghost.targetPos = ghost.GetRandomPos_InMap();
+                animator.SetBool("isMove", true);
+            }
+        }
     }
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state

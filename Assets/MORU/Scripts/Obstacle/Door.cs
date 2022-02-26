@@ -52,6 +52,8 @@ public class Door : BasicObstacle
 
             //만일 문을 이용시의 시각적 효과를 작업할 경우 이 곳에 추가
 
+
+
             //문을 이용한 횟수를 증가시킵니다.
             GameManager.instance.Del_DoorCountUp();
         }
