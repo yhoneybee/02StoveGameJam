@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public interface IHideable
 {
+    public Transform transform { get; }
     /// <summary>
     /// 숨을 위치좌표를 결정합니다.
     /// </summary>

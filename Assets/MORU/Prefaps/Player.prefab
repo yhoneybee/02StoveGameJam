@@ -312,6 +312,8 @@ MonoBehaviour:
   moveSpeed: 3
   rawImgZoom: {fileID: 0}
   cam: {fileID: 0}
+  imgPicture: {fileID: 0}
+  rtrnLayoutGroup: {fileID: 0}
 --- !u!114 &2246039470804777547
 MonoBehaviour:
   m_ObjectHideFlags: 0

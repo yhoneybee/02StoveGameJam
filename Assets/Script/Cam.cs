@@ -100,6 +100,7 @@ public class Cam : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             CameraToggle();
+            Player.instance.PM.skeletonAnimation.AnimationName = "idle";
         }
         if (Input.GetMouseButtonDown(0))
         {

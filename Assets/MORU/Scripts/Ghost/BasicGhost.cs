@@ -27,7 +27,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
 
     [Tooltip("탐지 거리")]
     [SerializeField] private float _observingRange;
-    public float observingRange=> _observingRange;
+    public float observingRange => _observingRange;
 
 
     [Tooltip("쫒기 거리")]
@@ -80,14 +80,14 @@ public class BasicGhost : MonoBehaviour, IDoorable
     {
         if (!isDooring)
         { cur_searchTime += Time.deltaTime; }
-        if(cur_searchTime > searchTime && targetPlayer == null && selectedDoor == null)
+        if (cur_searchTime > searchTime && targetPlayer == null && selectedDoor == null)
         {
             var doors = myMap.GetComponentsInChildren<Door>();
             var door = doors[Random.Range(0, doors.Length)];
             selectedDoor = door;
             TargetToDoor(door);
         }
-        if(cur_Bug_Refresh < bug_Refresh && targetPlayer != null)
+        if (cur_Bug_Refresh < bug_Refresh && targetPlayer != null)
         {
             cur_Bug_Refresh += Time.deltaTime;
         }
@@ -95,7 +95,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
         {
             cur_Bug_Refresh = 0;
             targetPlayer = null;
-        }    
+        }
     }
 
     /// <summary>
@@ -115,15 +115,15 @@ public class BasicGhost : MonoBehaviour, IDoorable
     /// </summary>
     public void FindObject()
     {
-        if(targetPlayer == null)
+        if (targetPlayer == null)
         {
-            if(_Observingterm >= 0.2f)
+            if (_Observingterm >= 0.2f)
             {
                 _Observingterm = 0;
                 var results = Physics2D.OverlapCircleAll(transform.position, _observingRange);
-                foreach(var result in results)
+                foreach (var result in results)
                 {
-                    if(result.CompareTag("Player"))
+                    if (result.CompareTag("Player"))
                     {
                         if (result.GetComponent<Player>().cur_State != Define.State.Hide)
                         { targetPlayer = result.transform; }
@@ -144,8 +144,8 @@ public class BasicGhost : MonoBehaviour, IDoorable
     public bool IsClosedToUnit()
     {
         if (targetPlayer == null) return false;
-        
-        if(Vector2.Distance(transform.position, targetPlayer.position) >= followingRange)
+
+        if (Vector2.Distance(transform.position, targetPlayer.position) >= followingRange)
         {
             targetPlayer = null;
             return false;
@@ -163,28 +163,27 @@ public class BasicGhost : MonoBehaviour, IDoorable
     /// </summary>
     /// <returns></returns>
     /// 
-    public bool  GetRandomPos_InMap(out Vector3 targetPos)
+    public bool GetRandomPos_InMap(out Vector3 targetPos)
     {
-        if(isDooring)
+        if (isDooring)
         {
             targetPos = DoorPos;
             return true;
         }
+
         Vector3 _point = Vector3.zero;
-            var point = transform.position +
-                new Vector3(Random.Range(-moveRange*2, moveRange*2), Random.Range(-moveRange, moveRange), 0);
-            _point = point;
+        var point = transform.position +
+            new Vector3(Random.Range(-moveRange * 2, moveRange * 2), Random.Range(-moveRange, moveRange), 0);
+        _point = point;
         targetPos = _point;
         Debug.Log($"{_point}");
         if (myMap.polygonCollider2D.OverlapPoint(_point))
         {
-            
+
             return true;
         }
         else
             return false;
-
-
     }
 
     /// <summary>
@@ -192,7 +191,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
     /// </summary>
     public void TargetToDoor(Door door)
     {
-        if(targetPlayer == null)
+        if (targetPlayer == null)
         {
             targetPos = door.transform.position;
             DoorPos = door.transform.position;
@@ -223,7 +222,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
 
     private void BugCheck()
     {
-        
+
     }
 
 }
