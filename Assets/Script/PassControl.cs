@@ -12,4 +12,9 @@ public class PassControl : MonoBehaviour
 
         K.moveableY = v == 0;
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        K.moveableY = true;
+    }
 }

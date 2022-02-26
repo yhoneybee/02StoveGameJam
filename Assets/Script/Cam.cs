@@ -11,6 +11,7 @@ public class Cam : MonoBehaviour
     [SerializeField] private RawImage rawImgZoom;
     [SerializeField] private Camera cam;
     [SerializeField] private Image imgPicture;
+    [SerializeField] private RectTransform rtrnLayoutGroup;
 
     public void CameraToggle()
     {
@@ -47,6 +48,20 @@ public class Cam : MonoBehaviour
             hit.transform.gameObject.SetActive(false);
 
             PostProcessing.Instance.GradingEffect(100, true);
+
+            imgPicture.sprite = hit.transform.GetComponent<Ghost>().spPicture;
+
+            for (int i = 0; i < 5; i++)
+            {
+                var img = rtrnLayoutGroup.GetChild(i).GetComponent<Image>();
+
+                if (img.sprite == null)
+                {
+                    img.sprite = imgPicture.sprite;
+                    img.gameObject.SetActive(true);
+                    break;
+                }
+            }
 
             StartCoroutine(EShowPicture());
         }

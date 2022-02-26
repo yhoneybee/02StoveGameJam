@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using UnityEngine.SceneManagement;
 
-public class DeskGhost : MonoBehaviour
+public class DeskGhost : Ghost
 {
     [SerializeField] private List<Transform> transforms;
     [SerializeField] private Transform curTransform;

@@ -7,7 +7,7 @@ public class Singletone<T> : MonoBehaviour
 {
     public static T Instance { get; private set; } = null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Instance = GetComponent<T>();
     }

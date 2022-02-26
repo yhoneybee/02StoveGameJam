@@ -50,12 +50,11 @@ public class PlayerMove : MonoBehaviour, IDoorable
             vignette.center.Override(viewport);
         }
 
-        transform.position = new Vector3(clampX, clampY, transform.position.z);
+        //transform.position = new Vector3(clampX, clampY, transform.position.z);
     }
 
     private void SpineAnimControll(float h, float v)
     {
-        return;
         if(h > 0)
         {
             skeletonAnimation.AnimationName = "walk";
