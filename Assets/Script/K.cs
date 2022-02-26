@@ -34,4 +34,7 @@ public static class K
     public static bool camable = true;
 
     public static List<HintInfo> hintInfos = new List<HintInfo>();
+
+    public static Diagram diagram = null;
+    public static HintUI hintUI = null;
 }

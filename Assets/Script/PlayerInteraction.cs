@@ -16,17 +16,16 @@ public class PlayerInteraction : MonoBehaviour
 
             if (!hintableObject) return;
 
-            string comment = "";
             if (hintableObject.hintInfo != null)
             {
-                comment = hintableObject.hintInfo.getHintCommnet;
-                K.hintInfos.Add(hintableObject.hintInfo);
+                K.diagram.Chatting(Color.black, "......", "..?!", hintableObject.hintInfo.getHintCommnet);
+                K.hintUI.GetHint(hintableObject.hintInfo);
                 hintableObject.hintInfo = null;
             }
             else
             {
                 int rand = Random.Range(1, 11);
-                comment = rand switch
+                string comment = rand switch
                 {
                     int i when i == 1 => "아무것도 없는데?",
                     int i when i == 2 => "여기서 뭐해?",
@@ -37,13 +36,17 @@ public class PlayerInteraction : MonoBehaviour
                     int i when i == 7 => "으... 먼지",
                     _ => "아무것도 없어...",
                 };
+                K.diagram.Chatting(Color.black, ".....", "...", comment);
             }
-
-            print(comment);
         }
+    }
+
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.R))
         {
-
+            K.hintUI.OpenUI();
+            K.hintUI.CloseUI();
         }
     }
 }
