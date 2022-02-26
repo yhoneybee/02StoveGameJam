@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Spine.Unity;
 
 public class PlayerMove : MonoBehaviour, IDoorable
 {
     [SerializeField] private float moveSpeed = 5;
 
     private SpriteRenderer sr;
+    public SkeletonAnimation skeletonAnimation;
+    public Spine.AnimationState spineAnim;
 
     private void Start()
     {
@@ -24,9 +27,9 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
         if (!K.moveableX) h = 0;
         if (!K.moveableY) v = 0;
-
+        
         transform.Translate(new Vector2(h, v) * moveSpeed * Time.fixedDeltaTime);
-
+        SpineAnimControll(h, v);
         var position = Vector3.zero;
         if (K.curMap)
             position = K.curMap.transform.position;
@@ -48,5 +51,27 @@ public class PlayerMove : MonoBehaviour, IDoorable
         }
 
         transform.position = new Vector3(clampX, clampY, transform.position.z);
+    }
+
+    private void SpineAnimControll(float h, float v)
+    {
+        if(h > 0)
+        {
+            skeletonAnimation.AnimationName = "walk";
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if(h< 0)
+        {
+            skeletonAnimation.AnimationName = "walk";
+            this.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (h == 0 && v == 0)
+        {
+            skeletonAnimation.AnimationName = "idle";
+        }
+        else
+        {
+            skeletonAnimation.AnimationName = "walk";
+        }
     }
 }

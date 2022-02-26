@@ -6,9 +6,14 @@ public class GameManager : SingleToneMono<GameManager>
 {
     ///게임매니저에서 최초 인게임 진입 시 랜덤적으로 선택될 요소들을 결정한다
     ///어떤 랜덤요소들이 있을지는 모르겠음
+    #region Variables
+    public float KongSpawnTime;
+    private float cur_KongTime;
+    #endregion Variables
 
-
-
+    #region Ref Variables
+    public MapManager _MapManager;
+    #endregion Ref Variables
     /// <summary>
     /// 추후 스코어 관리를 위한 변수와 델리게이트 목록입니다.
     /// </summary>
@@ -34,6 +39,19 @@ public class GameManager : SingleToneMono<GameManager>
     {
         base.Awake();
         Init_Delegate();
+        _MapManager = MapManager.instance;
+    }
+
+    private void Update()
+    {
+        if (KongSpawnTime <= cur_KongTime)
+        {
+            //콩콩이 소환
+        }
+        else
+        {
+            cur_KongTime += Time.deltaTime;
+        }
     }
 
     #region Helper Methods
