@@ -44,8 +44,24 @@ public class PlayerInteraction : MonoBehaviour
             //숨을 수 있는 오브젝트에 대한 상호작용 시
             else if (hiddenable_Object != null)
             {
-                hiddenable_Object.Hide(this.transform);
+                if (Player.instance.cur_State != Define.State.Hide)
+                {
+                    hiddenable_Object.Hide(this.transform);
+                    Player.instance.cur_State = Define.State.Hide;
+                    Player.instance.PM.skeletonAnimation.gameObject.SetActive(false);
+                    Player.instance.GetComponent<Collider2D>().isTrigger = true;
+                    K.moveable = false;
+                }
+                else if (Player.instance.cur_State == Define.State.Hide)
+                {
+                    hiddenable_Object.UnHide(this.transform);
+                    Player.instance.cur_State = Define.State.Idle;
+                    Player.instance.PM.skeletonAnimation.gameObject.SetActive(true);
+                    Player.instance.GetComponent<Collider2D>().isTrigger = false;
+                    K.moveable = true;
+                }
             }
+
             else { return; }
         }
     }

@@ -16,6 +16,8 @@ public class MoveBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (ghost == null) ghost = animator.GetComponent<BasicGhost>();
+        ghost.skeletonAnim.AnimationName = ClipName;
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -7,6 +7,9 @@ public class ToiletDoor : BasicObstacle, IHideable
     #region Ref Variables
     [Tooltip("실제 숨어지는 위치입니다.")]
     [SerializeField] Transform _HiddenPosition;
+
+    public Transform HiddenObject { get; private set; }
+
     #endregion Ref Variables
 
     #region Interface
@@ -20,12 +23,16 @@ public class ToiletDoor : BasicObstacle, IHideable
         //숨는 장소로 플레이어를 이동시킴
         target.transform.position = HiddenPosition.position;
 
+
+        HiddenObject = target;
+
         //플레이어의 숨어짐 처리는 플레이어에서 할 필요가 있습니다.
         //라이트 제어라면 이 곳에서 처리해도 좋습니다.
     }
 
     public void UnHide(Transform target)
     {
+        HiddenObject = null;
         //마지막으로 플레이어가 위치했던 장소로 플레이어를 이동시킴
         target.transform.position = LastPosition;
         
