@@ -9,14 +9,12 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private void Start()
     {
-        ShakeEffect(300);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ShakeEffect(0);
         }
     }
 
@@ -30,7 +28,7 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private IEnumerator EBloomEffect(Bloom bloom, float value)
     {
-        while (Mathf.Abs(bloom.intensity - value) > 1)
+        while (Mathf.Abs(bloom.intensity - value) >= 1)
         {
             bloom.intensity.Override(Mathf.MoveTowards(bloom.intensity, value, 1));
             yield return wait;
@@ -49,7 +47,7 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private IEnumerator EGrainEffect(Grain grain, float value)
     {
-        while (Mathf.Abs(grain.intensity - value) > 0.1f)
+        while (Mathf.Abs(grain.intensity - value) >= 0.1f)
         {
             grain.intensity.Override(Mathf.MoveTowards(grain.intensity, value, Time.deltaTime));
             yield return wait;
@@ -68,7 +66,7 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private IEnumerator ELensEffect(LensDistortion lens, float value)
     {
-        while (Mathf.Abs(lens.intensity - value) > 10)
+        while (Mathf.Abs(lens.intensity - value) >= 10)
         {
             lens.intensity.Override(Mathf.MoveTowards(lens.intensity, value, 10));
             yield return wait;
@@ -100,7 +98,7 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private IEnumerator EShakeEffect(DepthOfField grain, float value)
     {
-        while (Mathf.Abs(grain.focalLength - value) > 10)
+        while (Mathf.Abs(grain.focalLength - value) >= 10)
         {
             grain.focalLength.Override(Mathf.MoveTowards(grain.focalLength, value, 10));
             yield return wait;

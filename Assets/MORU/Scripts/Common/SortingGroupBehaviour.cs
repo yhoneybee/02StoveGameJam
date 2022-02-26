@@ -76,7 +76,7 @@ public class SortingGroupBehaviour : MonoBehaviour
         //bool을 만족 시 SortingOrder를 y값을 따라 바꿉니다.
         if (isOrderControl_Y)
         {
-            sortingGroup.sortingOrder = (int)(transform.position.y * 1000);
+            sortingGroup.sortingOrder = (int)(transform.position.y * -1000);
         }
     }
     #endregion Help Methods
