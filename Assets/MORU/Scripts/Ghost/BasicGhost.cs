@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 처음엔 이 클래스를 기반으로 모든 귀신을 만들려 했으나 몬스터 타입이 너무 달라 이 클래스가 곧 콩콩이가 될 것 같습니다.
@@ -52,6 +53,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
     [SerializeField] private float _Observingterm = 0.2f;
 
     public bool isDooring;
+    public bool isActive;
 
     #endregion Value Variables
 
@@ -74,6 +76,7 @@ public class BasicGhost : MonoBehaviour, IDoorable
     void Start()
     {
         isDooring = false;
+        isActive = true;
     }
 
     void Update()
@@ -196,7 +199,6 @@ public class BasicGhost : MonoBehaviour, IDoorable
             targetPos = door.transform.position;
             DoorPos = door.transform.position;
             isDooring = true;
-            Debug.Log("움직임 체크");
             return;
         }
         else
@@ -205,7 +207,6 @@ public class BasicGhost : MonoBehaviour, IDoorable
             targetPos = door.transform.position;
             DoorPos = door.transform.position;
             isDooring = true;
-            Debug.Log("움직임 체크");
         }
     }
 
@@ -225,4 +226,30 @@ public class BasicGhost : MonoBehaviour, IDoorable
 
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            K.moveable = false;
+            isActive = false;
+            _isMoveable = false;
+            var canvas = GameObject.Find("DeadCanvas");
+            if (canvas != null)
+            {
+                canvas.transform.GetChild(0).gameObject.SetActive(true);
+                StartCoroutine(Co_End());
+            }
+        }
+    }
+
+    private IEnumerator Co_End()
+    {
+        ///최대 6.5초
+        yield return new WaitForSeconds(6.5f);
+
+        SceneManager.LoadScene("GameOver");
+
+        yield return null;
+    }
 }
