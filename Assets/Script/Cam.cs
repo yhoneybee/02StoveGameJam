@@ -13,7 +13,11 @@ public class Cam : MonoBehaviour
 
     public void CameraToggle()
     {
+        if (!K.camable) return;
+
         K.moveable = !K.moveable;
+
+        Cursor.visible = K.moveable;
 
         if (!K.moveable)
         {
@@ -31,6 +35,8 @@ public class Cam : MonoBehaviour
 
     public void TakePicture()
     {
+        if (!K.camable) return;
+
         // Zoom카메라 위치에서 Raycasting해서 뭘 찍었는지 확인
         var hit = Physics2D.Raycast(cam.transform.position, Vector3.forward, 2, LayerMask.GetMask("Filmable"));
         if (hit.transform)
@@ -41,7 +47,7 @@ public class Cam : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+
     }
 
     private void Update()
@@ -58,6 +64,8 @@ public class Cam : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!K.camable) return;
+
         if (!K.moveable)
         {
             //float h = Input.GetAxisRaw("Horizontal");

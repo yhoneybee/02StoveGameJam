@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7855656882497018648}
   - component: {fileID: 7855656882497018647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Confiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 7855656883294681181}
   - component: {fileID: 7855656883294681182}
   - component: {fileID: 7855656883294681180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,3 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   polygonCollider2D: {fileID: 7855656882497018647}
+  trigger: 0
