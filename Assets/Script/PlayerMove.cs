@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour, IDoorable
     public SkeletonAnimation skeletonAnimation;
     public Spine.AnimationState spineAnim;
 
+    private float time;
+
     private void Start()
     {
         K.playerMove = this;
@@ -27,7 +29,17 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
         if (!K.moveableX) h = 0;
         if (!K.moveableY) v = 0;
-        
+
+        if (h != 0 || v != 0)
+        {
+            time += Time.fixedDeltaTime;
+            if (time >= 0.7f)
+            {
+                time = 0;
+                SoundManager.Instance.Play("주인공 발소리", SoundType.EFFECT);
+            }
+        }
+
         transform.Translate(new Vector2(h, v) * moveSpeed * Time.fixedDeltaTime);
         SpineAnimControll(h, v);
         var position = Vector3.zero;
@@ -55,12 +67,12 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
     private void SpineAnimControll(float h, float v)
     {
-        if(h > 0)
+        if (h > 0)
         {
             skeletonAnimation.AnimationName = "walk";
             this.transform.localScale = new Vector3(1, 1, 1);
         }
-        else if(h< 0)
+        else if (h < 0)
         {
             skeletonAnimation.AnimationName = "walk";
             this.transform.localScale = new Vector3(-1, 1, 1);
