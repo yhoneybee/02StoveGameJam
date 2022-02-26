@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Define
 {
+    public enum AnimationType
+    {
+        Spine,
+        Sprite
+    }
     public enum State
     {
         Die,
@@ -11,14 +16,14 @@ public class Define
         Idle,
         Attack,
         Surprise,
-        hide
+        Hide
     }
 
     public enum Map
     {
-        Class,
-        Toilet,
-        Corridor
+        Class,  //교실
+        Toilet, //화장실
+        Corridor//복도
     }
 
     public enum Layer
