@@ -7,6 +7,13 @@ public class PlayerMove : MonoBehaviour, IDoorable
 {
     [SerializeField] private float moveSpeed = 5;
 
+    private SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     private void FixedUpdate()
     {
         if (!K.moveable) return;
@@ -20,7 +27,7 @@ public class PlayerMove : MonoBehaviour, IDoorable
         if (K.curMap)
             position = K.curMap.transform.position;
 
-        var halfMapScale = K.curMap.transform.localScale / 2 - transform.localScale / 2;
+        var halfMapScale = K.curMap.sr.sprite.bounds.size / 2 - sr.sprite.bounds.size / 2;
 
         var clampX = Mathf.Clamp(transform.position.x, position.x - halfMapScale.x, position.x + halfMapScale.x);
         var clampY = Mathf.Clamp(transform.position.y, position.y - halfMapScale.y, position.y + halfMapScale.y);

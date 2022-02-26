@@ -156,5 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426ef56b236383c4483984a8e70af85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 7855656883294681182}
   polygonCollider2D: {fileID: 7855656882497018647}
   trigger: 1

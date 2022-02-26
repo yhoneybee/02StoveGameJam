@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class IngameMap : MonoBehaviour
 {
+    public SpriteRenderer sr;
     [SerializeField] public PolygonCollider2D polygonCollider2D;
     [SerializeField] private bool trigger;
     public void Setting()
