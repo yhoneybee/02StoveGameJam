@@ -51,6 +51,8 @@ public class PlayerInteraction : MonoBehaviour
                     Player.instance.PM.skeletonAnimation.gameObject.SetActive(false);
                     Player.instance.GetComponent<Collider2D>().isTrigger = true;
                     K.moveable = false;
+                    K.camable = false;
+                    PostProcessing.Instance.GradingEffect2(Color.black);
                 }
                 else if (Player.instance.cur_State == Define.State.Hide)
                 {
@@ -59,6 +61,8 @@ public class PlayerInteraction : MonoBehaviour
                     Player.instance.PM.skeletonAnimation.gameObject.SetActive(true);
                     Player.instance.GetComponent<Collider2D>().isTrigger = false;
                     K.moveable = true;
+                    K.camable = true;
+                    PostProcessing.Instance.GradingEffect2(Color.white);
                 }
             }
 

@@ -119,7 +119,7 @@ public class PostProcessing : Singletone<PostProcessing>
     {
         while (Mathf.Abs(grading.postExposure - value) >= 1)
         {
-            grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure, value, 2));
+            grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure.GetValue<float>(), value, 2));
             yield return wait;
         }
 
@@ -127,7 +127,7 @@ public class PostProcessing : Singletone<PostProcessing>
         {
             while (Mathf.Abs(grading.postExposure - 0) >= 1)
             {
-                grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure, 0, 3));
+                grading.postExposure.Override(Mathf.MoveTowards(grading.postExposure.GetValue<float>(), 0, 3));
                 yield return wait;
             }
         }
@@ -139,6 +139,7 @@ public class PostProcessing : Singletone<PostProcessing>
     {
         if (K.PostProcessVolume.profile.TryGetSettings<ColorGrading>(out var effect))
         {
+            StopAllCoroutines();
             StartCoroutine(EGradingEffect2(effect, color));
         }
     }
@@ -152,7 +153,7 @@ public class PostProcessing : Singletone<PostProcessing>
             grading.colorFilter.Override(Color.Lerp(grading.colorFilter.GetValue<Color>(), color, Time.deltaTime * 2));
             yield return wait;
         }
-
+        grading.colorFilter.Override(color);
         yield return null;
     }
 }

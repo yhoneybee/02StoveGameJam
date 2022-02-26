@@ -51,17 +51,17 @@ public class GameManager : SingleToneMono<GameManager>
 
     private void Update()
     {
-        if (KongSpawnTime <= cur_KongTime && !isSpawned_KongKong)
-        {
-            int value = Random.Range(0, SpawnPos.Length);
-            GameObject kong = Instantiate(KongKong, SpawnPos[value].position, Quaternion.identity);
-            kong.GetComponent<BasicGhost>().cur_Map = Define.Map.Toilet;
-            isSpawned_KongKong = true;
-        }
-        else
-        {
-            cur_KongTime += Time.deltaTime;
-        }
+        //if (KongSpawnTime <= cur_KongTime && !isSpawned_KongKong)
+        //{
+        //    int value = Random.Range(0, SpawnPos.Length);
+        //    GameObject kong = Instantiate(KongKong, SpawnPos[value].position, Quaternion.identity);
+        //    kong.GetComponent<BasicGhost>().cur_Map = Define.Map.Toilet;
+        //    isSpawned_KongKong = true;
+        //}
+        //else
+        //{
+        //    cur_KongTime += Time.deltaTime;
+        //}
     }
 
     #region Helper Methods
