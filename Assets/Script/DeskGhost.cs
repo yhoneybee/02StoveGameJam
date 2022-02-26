@@ -56,7 +56,7 @@ public class DeskGhost : MonoBehaviour
     private void FixedUpdate()
     {
         var dis = Vector3.Distance(transform.position, K.playerMove.transform.position);
-        if (dis < 4.5f)
+        if (dis < 4.8f)
         {
             animator.Play("Smile");
             CancelInvoke();
