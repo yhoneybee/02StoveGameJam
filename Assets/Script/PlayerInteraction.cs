@@ -19,7 +19,7 @@ public class PlayerInteraction : MonoBehaviour
             var hiddenable_Object = basicObstacle.GetComponent<IHideable>();
             if (hintableObject)
             {
-
+                SoundManager.Instance.Play("단서 별반짝임", SoundType.EFFECT);
                 if (!hintableObject.taken)
                 {
                     int rand = Random.Range(0,hints.Count);
