@@ -9,14 +9,12 @@ public class PostProcessing : Singletone<PostProcessing>
 
     private void Start()
     {
-        LensEffect(300);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            LensEffect(0);
         }
     }
 

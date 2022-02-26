@@ -31,6 +31,8 @@ public static class K
     private static PostProcessVolume postProcessVolume = null;
 
     public static bool moveable = true;
+    public static bool moveableX = true;
+    public static bool moveableY = true;
     public static bool camable = true;
 
     public static List<HintInfo> hintInfos = new List<HintInfo>();
