@@ -50,8 +50,8 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
         var clampX = Mathf.Clamp(transform.position.x, position.x - halfMapScale.x, position.x + halfMapScale.x);
 
-        var halfUnderX = (position.y - halfMapScale.y) / 5 * 5.5f;
-        var halfUpperX = (position.y + halfMapScale.y) / 5 * 3f;
+        var halfUnderX = (position.y - halfMapScale.y);
+        var halfUpperX = (position.y + halfMapScale.y);
 
         var clampY = Mathf.Clamp(transform.position.y, halfUnderX, halfUpperX);
 

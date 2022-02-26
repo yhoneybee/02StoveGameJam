@@ -65,6 +65,12 @@ public class Cam : MonoBehaviour
                 {
                     img.sprite = imgPicture.sprite;
                     img.gameObject.SetActive(true);
+
+                    if (i == 4)
+                    {
+                        print("WIN");
+                    }
+
                     break;
                 }
             }
