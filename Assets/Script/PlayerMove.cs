@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour, IDoorable
 
     private void SpineAnimControll(float h, float v)
     {
+        return;
         if(h > 0)
         {
             skeletonAnimation.AnimationName = "walk";

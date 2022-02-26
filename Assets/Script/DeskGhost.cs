@@ -65,6 +65,21 @@ public class DeskGhost : MonoBehaviour
 
     public void EndOfFrame()
     {
+        StartCoroutine(EEndOfFrame());
+    }
+
+    private IEnumerator EEndOfFrame()
+    {
+        PostProcessing.Instance.GradingEffect2(Color.red);
+
+        yield return new WaitForSeconds(1);
+
+        GameObject.Find("DeskGhostFace").GetComponent<SpriteRenderer>().color = Color.white;
+        
+        yield return new WaitForSeconds(1);
+
         SceneManager.LoadScene("GameOver");
+
+        yield return null;
     }
 }

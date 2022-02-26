@@ -10,6 +10,7 @@ public class Cam : MonoBehaviour
     [SerializeField] private float moveSpeed = 3;
     [SerializeField] private RawImage rawImgZoom;
     [SerializeField] private Camera cam;
+    [SerializeField] private Image imgPicture;
 
     public void CameraToggle()
     {
@@ -46,7 +47,26 @@ public class Cam : MonoBehaviour
             hit.transform.gameObject.SetActive(false);
 
             PostProcessing.Instance.GradingEffect(100, true);
+
+            StartCoroutine(EShowPicture());
         }
+    }
+
+    private IEnumerator EShowPicture()
+    {
+        var wait = new WaitForSeconds(0.01f);
+        imgPicture.color = Color.white;
+        imgPicture.gameObject.SetActive(true);
+
+        while (Mathf.Abs(imgPicture.color.a - 0) > 0.01f)
+        {
+            imgPicture.color = Color.Lerp(imgPicture.color, new Color(1, 1, 1, 0), Time.deltaTime * 2);
+            yield return wait;
+        }
+
+        imgPicture.gameObject.SetActive(false);
+
+        yield return null;
     }
 
     private void Start()

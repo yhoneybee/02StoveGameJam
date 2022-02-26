@@ -1117,12 +1117,12 @@ GameObject:
   - component: {fileID: 1231808126}
   - component: {fileID: 1231808125}
   m_Layer: 0
-  m_Name: "\uD314\uAC785"
+  m_Name: DeskGhostFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1231808125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1160,11 +1160,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 186978407
+  m_SortingLayer: 2
   m_SortingOrder: 10000
   m_Sprite: {fileID: 21300000, guid: b41740c07a4a31940b527289fdbd0492, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1181,12 +1181,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231808124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.31, y: -4.04, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2400055, y: -3.7700002, z: 0.88}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_Father: {fileID: 1817310021}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453140309
 GameObject:
@@ -1502,7 +1502,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -101.55, y: -0.26999974, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1231808126}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1586,6 +1587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e66a526af1b5444bbd97f782ff710e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KongSpawnTime: 0
+  _MapManager: {fileID: 0}
 --- !u!4 &1829258022
 Transform:
   m_ObjectHideFlags: 0
@@ -1875,6 +1878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  skeletonAnimation: {fileID: 0}
 --- !u!50 &2008271825
 Rigidbody2D:
   serializedVersion: 4
@@ -1912,6 +1916,7 @@ MonoBehaviour:
   moveSpeed: 3
   rawImgZoom: {fileID: 81134041}
   cam: {fileID: 2009397717}
+  imgPicture: {fileID: 1054793536}
 --- !u!114 &2008271827
 MonoBehaviour:
   m_ObjectHideFlags: 0

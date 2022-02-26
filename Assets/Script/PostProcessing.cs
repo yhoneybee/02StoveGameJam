@@ -134,4 +134,25 @@ public class PostProcessing : Singletone<PostProcessing>
 
         yield return null;
     }
+
+    public void GradingEffect2(Color color)
+    {
+        if (K.PostProcessVolume.profile.TryGetSettings<ColorGrading>(out var effect))
+        {
+            StartCoroutine(EGradingEffect2(effect, color));
+        }
+    }
+
+    private IEnumerator EGradingEffect2(ColorGrading grading, Color color)
+    {
+        while (Mathf.Abs(grading.colorFilter.GetValue<Color>().r - color.r) >= 0.01f ||
+            Mathf.Abs(grading.colorFilter.GetValue<Color>().g - color.g) >= 0.01f ||
+            Mathf.Abs(grading.colorFilter.GetValue<Color>().b - color.b) >= 0.01f)
+        {
+            grading.colorFilter.Override(Color.Lerp(grading.colorFilter.GetValue<Color>(), color, Time.deltaTime * 2));
+            yield return wait;
+        }
+
+        yield return null;
+    }
 }
