@@ -12,6 +12,7 @@ public class IngameMap : MonoBehaviour
     public Door[] doors;
     public IHideable[] Hideables;
     public BasicObstacle[] obstacles;
+    public Transform[] DangerZone;
 
     public void Setting()
     {

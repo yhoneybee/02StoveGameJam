@@ -12,7 +12,12 @@ public class GameManager : SingleToneMono<GameManager>
     #endregion Variables
 
     #region Ref Variables
+    bool isSpawned_KongKong;
     public MapManager _MapManager;
+    public GameObject KongKong;
+
+    public Transform[] SpawnPos;
+
     #endregion Ref Variables
     /// <summary>
     /// 추후 스코어 관리를 위한 변수와 델리게이트 목록입니다.
@@ -40,13 +45,18 @@ public class GameManager : SingleToneMono<GameManager>
         base.Awake();
         Init_Delegate();
         _MapManager = MapManager.instance;
+        SpawnPos = _MapManager.maps[(int)Define.Map.Toilet].DangerZone;
+        isSpawned_KongKong = false;
     }
 
     private void Update()
     {
-        if (KongSpawnTime <= cur_KongTime)
+        if (KongSpawnTime <= cur_KongTime && !isSpawned_KongKong)
         {
-            //콩콩이 소환
+            int value = Random.Range(0, SpawnPos.Length);
+            GameObject kong = Instantiate(KongKong, SpawnPos[value].position, Quaternion.identity);
+            kong.GetComponent<BasicGhost>().cur_Map = Define.Map.Toilet;
+            isSpawned_KongKong = true;
         }
         else
         {

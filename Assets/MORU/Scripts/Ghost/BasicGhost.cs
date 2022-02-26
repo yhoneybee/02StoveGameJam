@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 /// <summary>
 /// 처음엔 이 클래스를 기반으로 모든 귀신을 만들려 했으나 몬스터 타입이 너무 달라 이 클래스가 곧 콩콩이가 될 것 같습니다.
@@ -60,7 +61,14 @@ public class BasicGhost : MonoBehaviour, IDoorable
     [Tooltip("다가가려 하는 위치")]
     public Vector3 targetPos;
     public Vector3 DoorPos;
-    [SerializeField] Door selectedDoor; 
+    [SerializeField] Door selectedDoor;
+
+    public SkeletonAnimation skeletonAnim;
+
+
+    public float bug_Refresh;
+    public float cur_Bug_Refresh;
+
     #endregion Ref Variables
 
     void Start()
@@ -79,6 +87,15 @@ public class BasicGhost : MonoBehaviour, IDoorable
             selectedDoor = door;
             TargetToDoor(door);
         }
+        if(cur_Bug_Refresh < bug_Refresh && targetPlayer != null)
+        {
+            cur_Bug_Refresh += Time.deltaTime;
+        }
+        else
+        {
+            cur_Bug_Refresh = 0;
+            targetPlayer = null;
+        }    
     }
 
     /// <summary>
@@ -108,7 +125,8 @@ public class BasicGhost : MonoBehaviour, IDoorable
                 {
                     if(result.CompareTag("Player"))
                     {
-                        targetPlayer = result.transform;
+                        if (result.GetComponent<Player>().cur_State != Define.State.Hide)
+                        { targetPlayer = result.transform; }
                     }
                 }
             }
@@ -203,5 +221,9 @@ public class BasicGhost : MonoBehaviour, IDoorable
         cur_searchTime = 0;
     }
 
+    private void BugCheck()
+    {
+        
+    }
 
 }
