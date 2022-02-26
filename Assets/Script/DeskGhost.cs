@@ -21,6 +21,7 @@ public class DeskGhost : Ghost
 
     private void Move()
     {
+        if (K.curMap != MapManager.instance.maps[0]) return;
         transforms.Sort((x, y) =>
         {
             var disX = Vector3.Distance(x.transform.position, transform.position);

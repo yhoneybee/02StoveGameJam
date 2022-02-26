@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class HintableObject : BasicObstacle
 {
-    public HintInfo hintInfo;
+    //public HintInfo hintInfo;
+    public bool taken;
 }

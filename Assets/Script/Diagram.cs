@@ -25,6 +25,8 @@ public class Diagram : MonoBehaviour
     {
         var wait = new WaitForSeconds(0.1f);
 
+        txtDiagram.text = "";
+
         yield return EAlpha(1);
 
         K.moveable = false;
