@@ -25,6 +25,15 @@ public class BasicObstacle : MonoBehaviour
 
     #endregion Ref Variables
 
+    #region CallBack Methods
+    protected virtual void Awake()
+    {
+        
+    }
+    #endregion CallBack Methods
+
+
+
     #region Abstract Methods
 
     /// <summary>
