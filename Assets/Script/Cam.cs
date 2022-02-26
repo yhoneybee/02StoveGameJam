@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Cam : MonoBehaviour
 {
@@ -73,7 +74,7 @@ public class Cam : MonoBehaviour
 
                     if (i == 4)
                     {
-                        print("WIN");
+                        SceneManager.LoadScene(3);
                     }
 
                     break;
