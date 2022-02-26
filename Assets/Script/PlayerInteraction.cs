@@ -18,7 +18,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (hintableObject.hintInfo != null)
             {
-                K.diagram.Chatting(Color.black, "......", "..?!", hintableObject.hintInfo.getHintCommnet);
+                K.diagram.Chatting(Color.black, "......", "...?!", hintableObject.hintInfo.getHintCommnet);
                 K.hintUI.GetHint(hintableObject.hintInfo);
                 hintableObject.hintInfo = null;
             }
