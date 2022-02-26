@@ -46,12 +46,12 @@ public class PlayerMove : MonoBehaviour, IDoorable
         if (K.curMap)
             position = K.curMap.transform.position;
 
-        var halfMapScale = K.curMap.sr.sprite.bounds.size / 2 - sr.sprite.bounds.size / 2;
+        var halfMapScale = K.curMap.sr.sprite.bounds.size / 2 - new Vector3(1, 6, 1) / 2;
 
         var clampX = Mathf.Clamp(transform.position.x, position.x - halfMapScale.x, position.x + halfMapScale.x);
 
-        var halfUnderX = (position.y - halfMapScale.y) / 5 * 9;
-        var halfUpperX = (position.y + halfMapScale.y) / 5 * 1;
+        var halfUnderX = (position.y - halfMapScale.y) / 5 * 5.5f;
+        var halfUpperX = (position.y + halfMapScale.y) / 5 * 3f;
 
         var clampY = Mathf.Clamp(transform.position.y, halfUnderX, halfUpperX);
 
@@ -62,7 +62,7 @@ public class PlayerMove : MonoBehaviour, IDoorable
             vignette.center.Override(viewport);
         }
 
-        //transform.position = new Vector3(clampX, clampY, transform.position.z);
+        transform.position = new Vector3(clampX, clampY, transform.position.z);
     }
 
     private void SpineAnimControll(float h, float v)
